@@ -1,0 +1,9 @@
+{
+  "name" : "Local config RPC",
+  "author" : "Adel Zaalouk",
+  "author-email" : "adel.zaalouk@eict.de",
+  "version" : 1,
+  "implements" : ["netconfrm"],
+  "loads-after" : ["config"],
+  "requires" : []
+}

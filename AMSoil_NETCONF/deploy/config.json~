@@ -1,0 +1,17 @@
+{
+    "__comment" : "deployment specific parameters are described here, e.g., NETCONF server configuration parameters (server_port, IP, name).",
+    "NETCONF_RPC_SERVER": {
+         "description"  : "Configuration of the RPC NETCONF server",
+         "server" : "localhost",
+         "port" : "2222"
+    },
+
+    "NETCONF_SERVER": {
+         "server" : "localhost",
+         "port" : "830", 
+         "password" : "zanetworker_89",
+         "yang_namespace" : "http://zanetworker.com/ns/my-box"
+    }
+
+}
+

@@ -1,0 +1,9 @@
+{
+  "name" : "RPC Registry",
+  "author" : "Adel Zaalouk ",
+  "author-email" : "adel.zaalouk@eict.de",
+  "version" : 1,
+  "implements" : ["jsonrpc"],
+  "loads-after" : ["config"],
+  "requires" : []
+}
