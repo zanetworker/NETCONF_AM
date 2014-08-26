@@ -18,8 +18,8 @@ class NETCONF_Delegate(object):
         Return:
             A list of capabilities supported by the underlying device using NETCONF's status message
         """
-        options = {'type': 'interface', }
-        return self._rm.get_config()
+        options = {'type': 'interfaces'}
+        return self._rm.get_config(options)
 
     def list_capabilities(self):
         """
@@ -33,7 +33,7 @@ class NETCONF_Delegate(object):
         """
         return self._rm.status()
 
-    def set_interface(self, **options):
+    def set_parameter(self, parameter_type, parameter_value):
         """
         Change the value of an interface, it could be enable, disable ports or change port names
 
@@ -43,6 +43,5 @@ class NETCONF_Delegate(object):
         Return:
             A list of capabilities supported by the underlying device using NETCONF's status message
         """
-        options = {'type': 'interface', }
-        return self._rm.edit_config_test(options)
+        return self._rm.edit_config(parameter_type, parameter_value)
 

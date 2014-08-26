@@ -35,8 +35,5 @@ class NETCONF_Handler(object):
         return self._delegate.list_capabilities()
 
 
-    @serviceinterface
-    def set_interface(self, type, interface_value):
-        configuration_options = {'type': type,
-                                 'value': interface_value}
-        return self._delegate.set_interface(**configuration_options)
+    def set_parameter(self, parameter_type, parameter_value):
+        return self._delegate.set_parameter(parameter_type, parameter_value)

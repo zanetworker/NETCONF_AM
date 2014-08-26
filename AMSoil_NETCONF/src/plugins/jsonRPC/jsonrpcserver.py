@@ -13,14 +13,17 @@ class JSON_RPC_SERVER (ThreadingMixIn, SimpleJSONRPCServer):
 def list_interfaces():
     return handler_object.list_interfaces()
 
-def set_interface(type, interface_value):
-    return handler_object.set_interface(type, interface_value)
+def set_parameter(parameter_type, parameter_value):
+    return handler_object.set_parameter(parameter_type, parameter_value)
+
+def list_capabilities():
+    return handler_object.list_capabilties()
 
 def runServer():
-
     print "Waiting For NETCONF Requests...!!"
     server = JSON_RPC_SERVER((netconfrpc_server_ip, int(netconfrpc_server_port)))
     server.register_function(list_interfaces)
-    server.register_function(set_interface)
+    server.register_function(set_parameter)
+    server.register_function(list_capabilities)
     server.serve_forever()
 

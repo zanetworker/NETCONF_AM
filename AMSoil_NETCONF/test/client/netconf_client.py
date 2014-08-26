@@ -5,7 +5,7 @@ def main():
     Run the Application
     """
     server = jsonrpclib.Server('http://localhost:2222')
-    result = server.list_interfaces()
+    result = server.set_parameter('interface', 'eth1')
 
     print result
 
