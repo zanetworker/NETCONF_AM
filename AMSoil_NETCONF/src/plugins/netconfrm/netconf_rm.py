@@ -4,6 +4,8 @@ from amsoil.config import netconf_server_password,\
     netconf_server_port, \
     netconf_server_namespace
 
+import xml.etree.ElementTree as ET
+
 class NETCONFResourceManager(object):
 
     def __init__(self):
@@ -27,8 +29,8 @@ class NETCONFResourceManager(object):
                                  hostkey_verify=False) as m:
 
                 if filter:
-                    filter_text = '<%s xmlns="%s"/>' % (filter['type'], netconf_server_namespace)
-                    return m.get_config(source='running', filter=str(filter_text)).data_xml
+                    parsed_xml = self.parseXML(m.get_config(source='running').data_xml, filter['type'])
+                    return parsed_xml if parsed_xml is not None else "There is not such element in the tree"
                 else:
                     return m.get_config(source='running').data_xml
         except Exception as e:
@@ -97,4 +99,30 @@ class NETCONFResourceManager(object):
             return functions['change']()
         else:
             return functions['disable']()
+
+
+    def parseXML(self, xml_string, parameter_to_filter):
+        """
+        Filter important parameters from the device config
+
+        args:
+            xml_string: the whole xml tree string
+            parameter_to_filter:
+
+        return:
+            The filtered sub tree
+        """
+        root = ET.fromstring(xml_string)
+        for child in root:
+            return ET.tostring(child) if parameter_to_filter in child.tag else None
+
+
+
+
+
+
+
+
+
+
 

@@ -10,16 +10,13 @@ class NETCONF_Delegate(object):
 
     def list_interfaces(self):
         """
-
-
         Args:
             None
 
         Return:
             A list of capabilities supported by the underlying device using NETCONF's status message
         """
-        options = {'type': 'interfaces'}
-        return self._rm.get_config(options)
+        return self.list_parameter('interfaces')
 
     def list_capabilities(self):
         """
@@ -45,3 +42,16 @@ class NETCONF_Delegate(object):
         """
         return self._rm.edit_config(parameter_type, parameter_value)
 
+
+    def list_parameter(self, parameter_to_list):
+        """
+        calls get-config with the right parameters
+
+        Args:
+            the type of parameter to show
+
+        Return:
+          the parameter to show
+        """
+        options = {'type': parameter_to_list}
+        return self._rm.get_config(options)
