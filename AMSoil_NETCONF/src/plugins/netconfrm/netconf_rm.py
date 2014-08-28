@@ -91,12 +91,34 @@ class NETCONFResourceManager(object):
         def enable_interface():
             pass
 
+        def set_experimenter():
+            config_data = """<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+                                <properties xmlns="%s">
+                                    <experimenter>%s</experimenter>
+                                </properties>
+                             </config>""" % (netconf_server_namespace, parameter_value)
+
+            with manager.connect(host=netconf_server_ip,
+                port=int(netconf_server_port),
+                username='adel',
+                password=netconf_server_password) as m:
+
+                assert(":validate" in m.server_capabilities)
+                m.edit_config(target='running', config=config_data)
+                print m.get_config(source='running').data_xml
+
+
         functions = {'change': change_interface_name,
                      'disable': disable_interface,
-                     'enable': enable_interface}
+                     'enable': enable_interface,
+                     'experimenter': set_experimenter}
 
         if parameter_type in ['interface', 'interfaces']:
             return functions['change']()
+
+        elif parameter_type in ['experimenter', 'experiment']:
+            return functions['experimenter']()
+
         else:
             return functions['disable']()
 

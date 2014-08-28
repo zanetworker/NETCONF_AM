@@ -35,5 +35,10 @@ class NETCONF_Handler(object):
         return self._delegate.list_capabilities()
 
 
+    @serviceinterface
+    def list_properties(self):
+        return self._delegate.list_properties()
+
+    @serviceinterface
     def set_parameter(self, parameter_type, parameter_value):
         return self._delegate.set_parameter(parameter_type, parameter_value)

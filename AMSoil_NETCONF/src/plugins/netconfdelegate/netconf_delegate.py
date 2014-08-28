@@ -18,6 +18,16 @@ class NETCONF_Delegate(object):
         """
         return self.list_parameter('interfaces')
 
+    def list_properties(self):
+        """
+        Args:
+            None
+
+        Return:
+            A list of capabilities supported by the underlying device using NETCONF's status message
+        """
+        return self.list_parameter('properties')
+
     def list_capabilities(self):
         """
         Translates the list_capabilities rpc call to a NETCONF message
