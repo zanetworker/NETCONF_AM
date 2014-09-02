@@ -2,9 +2,11 @@ from ncclient import manager
 from amsoil.config import netconf_server_password,\
     netconf_server_ip,\
     netconf_server_port, \
-    netconf_server_namespace
+    netconf_server_namespace, \
+    root_namespace
 
 from netconf_rm_utils import *
+
 class NETCONFResourceManager(object):
 
     def __init__(self):
@@ -67,23 +69,30 @@ class NETCONFResourceManager(object):
             True if the configuration was successful, and False if the configuration failed
         """
 
+        print 'edit'
 
         def change_interface_name():
 
-            config_data = """<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-                            <interfaces xmlns="%s">
-                                <interface>%s</interface>
-                            </interfaces>
-                         </config>""" % (netconf_server_namespace, parameter_value)
 
-            with manager.connect(host=netconf_server_ip,
-                                 port=int(netconf_server_port),
-                                 username='adel',
-                                 password=netconf_server_password) as m:
+            parameter_dictionary = {'root': 'config', parameter_type: [netconf_server_namespace, {'interface': parameter_value}]}
+            xml, tags = dictToXML(parameter_dictionary, [root_namespace, netconf_server_namespace])
+            config_data = wrap_tags(xml, tags)
+            print config_data
 
-                assert(":validate" in m.server_capabilities)
-                m.edit_config(target='running', config=config_data)
-                print m.get_config(source='running').data_xml
+            # config_data = """<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            #                 <interfaces xmlns="%s">
+            #                     <interface>%s</interface>
+            #                 </interfaces>
+            #              </config>""" % (netconf_server_namespace, parameter_value)
+
+            # with manager.connect(host=netconf_server_ip,
+            #                      port=int(netconf_server_port),
+            #                      username='adel',
+            #                      password=netconf_server_password) as m:
+            #
+            #     assert(":validate" in m.server_capabilities)
+            #     m.edit_config(target='running', config=config_data)
+            #     print m.get_config(source='running').data_xml
 
         def disable_interface():
             print None
@@ -122,13 +131,6 @@ class NETCONFResourceManager(object):
 
         else:
             return functions['disable']()
-
-
-    def edit_config_parameters(self, parameters_dicitionary):
-
-
-
-
 
 
 

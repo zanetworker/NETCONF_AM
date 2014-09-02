@@ -58,6 +58,7 @@ netconfrpc_server_port = CONFIG['NETCONF_RPC_SERVER']['port'] or default_reg_por
 # NETCONF Server configuration parameters
 netconf_server_password = CONFIG['NETCONF_SERVER']['password'] or None
 netconf_server_namespace  = CONFIG['NETCONF_SERVER']['yang_namespace'] or None
+root_namespace = CONFIG['NETCONF_SERVER']['root_namespace'] or None
 netconf_server_port = CONFIG['NETCONF_SERVER']['port']
 netconf_server_ip = CONFIG['NETCONF_SERVER']['server']
 
