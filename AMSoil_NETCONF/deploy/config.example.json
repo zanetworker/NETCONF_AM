@@ -10,6 +10,7 @@
          "server" : "localhost",
          "port" : "830", 
          "password" : "password",
+         "username" : "username",
          "yang_namespace" : "http://zanetworker.com/ns/my-box",
          "root_namespace" : "urn:ietf:params:xml:ns:netconf:base:1.0"
     }

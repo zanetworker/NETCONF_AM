@@ -6,7 +6,7 @@ def parseXML(xml_string, parameter_to_filter):
     """
     Filter important parameters from the device config
     args:
-        xml_string: the whole xml tree string
+        xml_string: the whole xml tree stringc
         parameter_to_filter
     return:
     The filtered sub tree
@@ -28,11 +28,12 @@ def dictToXML(dict_to_convert, name_spaces):
     assert isinstance(dict_to_convert, dict), "Input is not a dictionary"
     assert len(dict_to_convert) > 0, "size of dictionary is zero "
 
+    print dict_to_convert
     outputxml = ""
     list_of_tags = []
 
     for key, value in dict_to_convert.iteritems():
-        if key == 'root':
+        if key == 'a':
             outputxml += "<%s xmlns=%s>" % (value, name_spaces[0])
             list_of_tags.append(value)
         else:
@@ -55,7 +56,6 @@ def dictToXML(dict_to_convert, name_spaces):
             else:
                 outputxml += "<%s>" % key + "<%s>" % value + "</%s>" % key
 
-    print outputxml
     return outputxml, list_of_tags
 
 
@@ -68,9 +68,10 @@ def wrap_tags(xml_to_wrap, tags):
     return:
     The final xml tree that will be used for configuration
     """
+
     if xml_to_wrap is not None:
-        for tag in tags:
-            xml_to_wrap+= "</%s>" % tag
+        for index in range(len(tags)):
+            xml_to_wrap += "</%s>" % tags.pop()
 
     return xml_to_wrap
 
