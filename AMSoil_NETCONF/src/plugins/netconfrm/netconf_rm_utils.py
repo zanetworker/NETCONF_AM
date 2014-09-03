@@ -34,11 +34,11 @@ def dictToXML(dict_to_convert, name_spaces):
 
     for key, value in dict_to_convert.iteritems():
         if key == 'a':
-            outputxml += "<%s xmlns=%s>" % (value, name_spaces[0])
+            outputxml += "<%s xmlns=\"%s\">" % (value, name_spaces[0])
             list_of_tags.append(value)
         else:
             if isinstance(value, list):
-                outputxml += "<%s xmlns=%s>" % (key, value[0])
+                outputxml += "<%s xmlns=\"%s\">" % (key, value[0])
                 list_of_tags.append(key)
 
                 for value in value[1:]:
@@ -54,7 +54,7 @@ def dictToXML(dict_to_convert, name_spaces):
                     else:
                         outputxml += "<%s>" % key + "<%s>" % value + "</%s>" % key
             else:
-                outputxml += "<%s>" % key + "<%s>" % value + "</%s>" % key
+                outputxml += "<%s>" % key + "%s" % value + "</%s>" % key
 
     return outputxml, list_of_tags
 

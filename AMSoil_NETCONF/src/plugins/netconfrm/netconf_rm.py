@@ -8,6 +8,8 @@ from amsoil.config import netconf_server_password,\
 
 from netconf_rm_utils import *
 
+import xml.etree.ElementTree as ET
+
 class NETCONFResourceManager(object):
 
     def __init__(self):
