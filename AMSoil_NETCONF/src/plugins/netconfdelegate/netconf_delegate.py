@@ -53,9 +53,6 @@ class NETCONF_Delegate(object):
         return self._rm.edit_config(parameter_type, parameter_value)
 
 
-    def set_parameterst(self, parameters):
-        return self._rm.edit_config_parameters(parameters)
-
     def list_parameter(self, parameter_to_list):
         """
         calls get-config with the right parameters

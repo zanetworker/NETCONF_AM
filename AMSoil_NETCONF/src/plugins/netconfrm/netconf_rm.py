@@ -67,40 +67,37 @@ class NETCONFResourceManager(object):
         Args:
             configuration_options: A dictionary that contains important parameters such as:
                 * type: defines whether the modification should be done to an interface, port, switch, etc.
-                * value: determines the value for which the parameter type should be set to.
+                * value: determines the value for which the parameter type should be set to. The value of a parameter contains the
+                  property name to be changed, and the value of the property. For example, it could look like this ['interface', 'eth0'].
+                  In this case we want to change the interface name to eth0
         Return:
             True if the configuration was successful, and False if the configuration failed
         """
 
+        assert isinstance(parameter_value, list), "Parameter Value needs to be a list"
 
         def change_interface_name():
 
-            parameter_dictionary = {'a': 'config', parameter_type: [netconf_server_namespace, {'interface': parameter_value}]}
+            parameter_dictionary = {'a': 'config',
+                                    parameter_type: [netconf_server_namespace, {parameter_value[0]:parameter_value[1]}]}
             xml, tags = dictToXML(parameter_dictionary, [root_namespace, netconf_server_namespace])
             config_data = wrap_tags(xml, tags)
 
             with manager.connect(host=netconf_server_ip,
                                  port=int(netconf_server_port),
-                                 username= netconf_server_username,
+                                 username=netconf_server_username,
                                  password=netconf_server_password) as m:
 
                 assert(":validate" in m.server_capabilities)
                 m.edit_config(target='running', config=config_data)
-                print m.get_config(source='running').data_xml
-
-        def disable_interface():
-            print None
-
-
-        def enable_interface():
-            pass
+                return m.get_config(source='running').data_xml
 
         def set_experimenter():
-            config_data = """<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-                                <properties xmlns="%s">
-                                    <experimenter>%s</experimenter>
-                                </properties>
-                             </config>""" % (netconf_server_namespace, parameter_value)
+
+            parameter_dictionary = {'a': 'config',
+                                    parameter_type: [netconf_server_namespace, {parameter_type[0]: parameter_value[1]}]}
+            xml, tags = dictToXML(parameter_dictionary, [root_namespace, netconf_server_namespace])
+            config_data = wrap_tags(xml, tags)
 
             with manager.connect(host=netconf_server_ip,
                 port=int(netconf_server_port),
@@ -109,22 +106,18 @@ class NETCONFResourceManager(object):
 
                 assert(":validate" in m.server_capabilities)
                 m.edit_config(target='running', config=config_data)
-                print m.get_config(source='running').data_xml
+                return m.get_config(source='running').data_xml
 
 
         functions = {'change': change_interface_name,
-                     'disable': disable_interface,
-                     'enable': enable_interface,
                      'experimenter': set_experimenter}
 
         if parameter_type in ['interface', 'interfaces']:
             return functions['change']()
 
-        elif parameter_type in ['experimenter', 'experiment']:
+        if parameter_type in ['experimenter', 'experiment']:
             return functions['experimenter']()
 
-        else:
-            return functions['disable']()
 
 
 
