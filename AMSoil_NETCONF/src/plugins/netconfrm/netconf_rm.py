@@ -37,8 +37,8 @@ class NETCONFResourceManager(object):
                     return parsed_xml if parsed_xml is not None else "There is not such element in the tree"
                 else:
                     return m.get_config(source='running').data_xml
-        except Exception as e:
-            print e
+        except:
+            return "Can not establish connection with the server, something went wrong"
 
     def status(self):
         """
@@ -50,16 +50,20 @@ class NETCONFResourceManager(object):
         Return:
             A list of capabilities supported by the underlying device
         """
-        capabilities = []
-        with manager.connect(host=netconf_server_ip,
-                             port=int(netconf_server_port),
-                             username= netconf_server_username,
-                             password=netconf_server_password,
-                             hostkey_verify=False) as m:
+        try:
+            capabilities = []
+            with manager.connect(host=netconf_server_ip,
+                                 port=int(netconf_server_port),
+                                 username= netconf_server_username,
+                                 password=netconf_server_password,
+                                 hostkey_verify=False) as m:
 
-            for c in m.server_capabilities:
-                capabilities.append(c)
-            return capabilities
+                for c in m.server_capabilities:
+                    capabilities.append(c)
+                return capabilities
+
+        except:
+            return "Can not establish connection with the server, something went wrong"
 
     def edit_config(self, parameter_type, parameter_value):
         """
@@ -83,31 +87,39 @@ class NETCONFResourceManager(object):
             xml, tags = dictToXML(parameter_dictionary, [root_namespace, netconf_server_namespace])
             config_data = wrap_tags(xml, tags)
 
-            with manager.connect(host=netconf_server_ip,
-                                 port=int(netconf_server_port),
-                                 username=netconf_server_username,
-                                 password=netconf_server_password) as m:
 
-                assert(":validate" in m.server_capabilities)
-                m.edit_config(target='running', config=config_data)
-                return m.get_config(source='running').data_xml
+            try:
+
+                with manager.connect(host=netconf_server_ip,
+                                     port=int(netconf_server_port),
+                                     username=netconf_server_username,
+                                     password=netconf_server_password) as m:
+
+                    assert(":validate" in m.server_capabilities)
+                    m.edit_config(target='running', config=config_data)
+                    return m.get_config(source='running').data_xml
+
+            except:
+                return "Can not establish connection with the server, something went wrong"
+
 
         def set_experimenter():
-
             parameter_dictionary = {'a': 'config',
                                     parameter_type: [netconf_server_namespace, {parameter_type[0]: parameter_value[1]}]}
             xml, tags = dictToXML(parameter_dictionary, [root_namespace, netconf_server_namespace])
             config_data = wrap_tags(xml, tags)
 
-            with manager.connect(host=netconf_server_ip,
-                port=int(netconf_server_port),
-                username= netconf_server_username,
-                password=netconf_server_password) as m:
+            try:
+                with manager.connect(host=netconf_server_ip,
+                    port=int(netconf_server_port),
+                    username= netconf_server_username,
+                    password=netconf_server_password) as m:
 
-                assert(":validate" in m.server_capabilities)
-                m.edit_config(target='running', config=config_data)
-                return m.get_config(source='running').data_xml
-
+                    assert(":validate" in m.server_capabilities)
+                    m.edit_config(target='running', config=config_data)
+                    return m.get_config(source='running').data_xml
+            except:
+                return "Can not establish connection with the server, something went wrong"
 
         functions = {'change': change_interface_name,
                      'experimenter': set_experimenter}
@@ -115,7 +127,7 @@ class NETCONFResourceManager(object):
         if parameter_type in ['interface', 'interfaces']:
             return functions['change']()
 
-        if parameter_type in ['experimenter', 'experiment']:
+        if parameter_type in ['experimenter', 'experiment', 'properties']:
             return functions['experimenter']()
 
 

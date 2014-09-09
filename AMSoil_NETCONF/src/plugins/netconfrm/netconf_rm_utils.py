@@ -28,7 +28,6 @@ def dictToXML(dict_to_convert, name_spaces):
     assert isinstance(dict_to_convert, dict), "Input is not a dictionary"
     assert len(dict_to_convert) > 0, "size of dictionary is zero "
 
-    print dict_to_convert
     outputxml = ""
     list_of_tags = []
 
