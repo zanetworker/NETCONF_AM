@@ -1,9 +1,11 @@
 language: python
 python:
   - "2.7"
+
 # install database service
 services:
   - mongodb
+
 # install dependencies
 install:
   - "sudo apt-get update -qq"
@@ -13,7 +15,7 @@ install:
 # setup environment and start AMSoil NETCONF
 before_script:
 
-  - "cp AMSoil_NETCONF/deploy/config.json.example deploy/config.json"
+  - "cp AMSoil_NETCONF/deploy/config.json.example AMSoil_NETCONF/deploy/config.json"
   - "python AMSoil_NETCONF/src/main.py &"
   - "python AMSoil_NETCONF/src/main_netconf.py &"
   - "sleep 5"
