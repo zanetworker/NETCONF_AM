@@ -13,15 +13,14 @@ install:
 # setup environment and start AMSoil NETCONF
 before_script:
 
-  - "cp deploy/config.json.example deploy/config.json"
-  - "./test/creds/gen-certs.sh"
-  - "python src/main.py &"
-  - "python src/main_netconf.py &"
+  - "cp AMSoil_NETCONF/deploy/config.json.example deploy/config.json"
+  - "python AMSoil_NETCONF/src/main.py &"
+  - "python AMSoil_NETCONF/src/main_netconf.py &"
   - "sleep 5"
 
 # run Python unit tests
 script:
-  -  "python test/unit/netconf/netconf_tests.py"
+  -  "python AMSoil_NETCONF/test/unit/netconf/netconf_tests.py"
 # notify result of build to email address
 notifications:
   email:
