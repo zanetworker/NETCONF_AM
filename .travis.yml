@@ -16,9 +16,8 @@ install:
 before_script:
 
   - "cp AMSoil_NETCONF/deploy/config.example.json AMSoil_NETCONF/deploy/config.json"
-#  - "python AMSoil_NETCONF/src/main.py &"
   - "python AMSoil_NETCONF/src/main_netconf.py &"
-  - "sleep 10"
+  - "sleep 15"
 
 # run Python unit tests
 script:
