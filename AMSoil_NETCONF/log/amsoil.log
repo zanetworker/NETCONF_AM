@@ -11073,3 +11073,35 @@ ImportError: No module named jsonrpclib.SimpleJSONRPCServer
 2014-09-09 10:29:48,507 [INFO] - [pluginmanager] registering service geniv3exceptions
 2014-09-09 10:29:48,507 [INFO] - [pluginmanager] loading dhcpgeni3
 2014-09-09 10:29:48,507 [INFO] - [pluginmanager] done loading plugins
+2014-09-09 12:50:10,272 [INFO] - Logging initialized
+2014-09-09 12:50:10,273 [INFO] - [pluginmanager] loading configdb
+2014-09-09 12:50:10,356 [INFO] - [pluginmanager] registering service config
+2014-09-09 12:50:10,356 [INFO] - [pluginmanager] registering service configexceptions
+2014-09-09 12:50:10,356 [INFO] - [pluginmanager] loading netconfrm
+2014-09-09 12:50:10,411 [INFO] - [pluginmanager] registering service netconfrm
+2014-09-09 12:50:10,411 [INFO] - [pluginmanager] loading netconf
+2014-09-09 12:50:10,416 [INFO] - [pluginmanager] registering service netconfrpc
+2014-09-09 12:50:10,416 [INFO] - [pluginmanager] loading netconfdelegate
+2014-09-09 12:50:10,416 [INFO] - [pluginmanager] loading mailer
+2014-09-09 12:50:10,420 [INFO] - [pluginmanager] registering service mailer
+2014-09-09 12:50:10,420 [INFO] - [pluginmanager] loading schedule
+2014-09-09 12:50:10,428 [INFO] - [pluginmanager] registering service schedule
+2014-09-09 12:50:10,428 [INFO] - [pluginmanager] registering service scheduleexceptions
+2014-09-09 12:50:10,428 [INFO] - [pluginmanager] loading flaskrpcs
+2014-09-09 12:50:10,768 [INFO] - [pluginmanager] registering service rpcserver
+2014-09-09 12:50:10,768 [INFO] - [pluginmanager] registering service xmlrpc
+2014-09-09 12:50:10,768 [INFO] - [pluginmanager] loading jsonRPC
+2014-09-09 12:50:10,769 [INFO] - [pluginmanager] registering service jsonrpc
+2014-09-09 12:50:10,769 [INFO] - [pluginmanager] loading worker
+2014-09-09 12:50:10,774 [INFO] - [pluginmanager] registering service worker
+2014-09-09 12:50:10,774 [INFO] - [pluginmanager] loading dhcprm
+2014-09-09 12:50:10,781 [INFO] - [worker] Removing older recurring job with the same signature (dhcpresourcemanager, expire_leases)
+2014-09-09 12:50:11,136 [INFO] - [pluginmanager] registering service dhcpresourcemanager
+2014-09-09 12:50:11,137 [INFO] - [pluginmanager] registering service dhcpexceptions
+2014-09-09 12:50:11,137 [INFO] - [pluginmanager] loading configrpc
+2014-09-09 12:50:11,139 [INFO] - [pluginmanager] loading geniv3rpc
+2014-09-09 12:50:11,163 [INFO] - [pluginmanager] registering service geniv3handler
+2014-09-09 12:50:11,163 [INFO] - [pluginmanager] registering service geniv3delegatebase
+2014-09-09 12:50:11,164 [INFO] - [pluginmanager] registering service geniv3exceptions
+2014-09-09 12:50:11,164 [INFO] - [pluginmanager] loading dhcpgeni3
+2014-09-09 12:50:11,164 [INFO] - [pluginmanager] done loading plugins
