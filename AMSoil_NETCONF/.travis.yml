@@ -7,7 +7,7 @@ services:
 # install dependencies
 install:
   - "sudo apt-get update -qq"
-  - "udo apt-get install python-setuptools python-dev swig libxmlsec1 xmlsec1 nginx"
+  - "sudo apt-get install python-setuptools python-dev swig libxmlsec1 xmlsec1 nginx"
   - "pip install -r requirements.txt"
 
 # setup environment and start AMSoil NETCONF
