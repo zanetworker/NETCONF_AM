@@ -3,7 +3,7 @@
     "NETCONF_RPC_SERVER": {
          "description"  : "Configuration of the RPC NETCONF server",
          "server" : "localhost",
-         "port" : "2222"
+         "port" : "3333"
     },
 
     "NETCONF_SERVER": {

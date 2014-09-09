@@ -3,7 +3,7 @@ import jsonrpclib
 
 class TestNETCONF(unittest.TestCase):
 
-    server = jsonrpclib.Server('http://localhost:2222')
+    server = jsonrpclib.Server('http://localhost:3333')
 
     # def test_interfaces(self):
     #     """
