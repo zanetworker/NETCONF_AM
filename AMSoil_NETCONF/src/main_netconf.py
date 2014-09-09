@@ -19,22 +19,6 @@ def main():
 
     # load plugins
     pm.init(config.PLUGINS_PATH)
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hw', ['help', 'worker'])
-    except getopt.GetoptError as e:
-        print "Wrong arguments: " + str(e)
-        print
-        print_usage()
-        return
-    for option, opt_arg in opts:
-        if option in ['-h', '--help']:
-            print_usage()
-            sys.exit(0)
-        if option in ['-w', '--worker']:
-            worker = pm.getService('worker')
-            worker.WorkerServer().runServer()
-            sys.exit(0)
-
     rcp_server = pm.getService('jsonrpc')
     rcp_server.runServer()
 
