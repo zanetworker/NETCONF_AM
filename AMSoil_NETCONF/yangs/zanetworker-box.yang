@@ -1,0 +1,27 @@
+module zanetworker-box {
+    namespace "http://zanetworker.com/ns/my-box";
+    prefix box;
+
+
+    container properties {
+        leaf name {
+         type string;
+        }
+    }
+
+    container interfaces {
+        list interface {
+            key name;
+            leaf name {
+                type string;
+            }
+            leaf oper-state {
+                config false ;
+                type enumeration {
+                    enum enabled;
+                    enum disabled;
+                }
+            }
+        }
+    }
+}

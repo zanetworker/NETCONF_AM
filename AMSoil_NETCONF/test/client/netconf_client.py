@@ -6,6 +6,7 @@ def main():
     """
     server = jsonrpclib.Server('http://localhost:2222')
     result = server.set_parameter('interfaces', ['interface', 'eth0'])
+    #result = server.set_parameter('experimenter', 'my_name')
     #result = server.list_interfaces()
     print result
 

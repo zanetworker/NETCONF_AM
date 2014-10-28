@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="zanetworker-box"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:box="http://zanetworker.com/ns/my-box">
+  <namespace uri="http://zanetworker.com/ns/my-box"/>
+  <prefix value="box"/>
+  <container name="properties">
+    <leaf name="name">
+      <type name="string"/>
+    </leaf>
+  </container>
+  <container name="interfaces">
+    <list name="interface">
+      <key value="name"/>
+      <leaf name="name">
+        <type name="string"/>
+      </leaf>
+      <leaf name="oper-state">
+        <config value="false"/>
+        <type name="enumeration">
+          <enum name="enabled"/>
+          <enum name="disabled"/>
+        </type>
+      </leaf>
+    </list>
+  </container>
+</module>

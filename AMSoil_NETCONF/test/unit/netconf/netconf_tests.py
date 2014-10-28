@@ -14,7 +14,7 @@ class TestNETCONF(unittest.TestCase):
     #     """
     #     result = TestNETCONF.server.set_parameter('interfaces', ['interface', 'eth0'])
     #     #self.assertIn('<interface>', result)
-    #     self.assertIsNotNone(result)
+    #     self.assertIsNotNone(result)s
 
 
     def test_experimenter(self):

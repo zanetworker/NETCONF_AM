@@ -1,4 +1,7 @@
-# Purpose
+
+
+
+# What is AMsoil
 
 AMsoil is a light-weight framework for creating Aggregate Managers (AM) for test beds.
 AMsoil is a pluggable system. It gives structure to develop new AMs and provides helpers for common tasks in AM development.
@@ -8,20 +11,24 @@ It has been extended to suite a the requirements of [ALIEN](http://www.fp7-alien
 
 If you don't know what an Aggregate Manager is please see [here](https://alpha.fp7-ofelia.eu/doc/index.php/General_terminology).
 
-## More detailed abstract
+# What is AMsoil NETCONF AM?
 
-This sofware is a result of the successfully completed OFELIA FP7 project, which paved the way for OpenFlow testbeds in Europe.
-With its pluggable and extendable design, AMsoil is now used in several FIRE projects such as [FP7 ALIEN](http://www.fp7-alien.eu/) and [FP7 FELIX](http://www.ict-felix.eu/).
-It is used by the backend of the [GENI Portal](https://portal.geni.net/), also [FIBRE](http://www.fibre-ict.eu) and [GEANT](http://www.fp7-ofelia.eu/news-and-events/press-releases/ofelia-and-gEant-cooperation-on-openflow-experimental-facilities/).
+The NETCONF AM is an aggregate manager that is built using the AMSoil framework. Using the NETCONF AM, it is possible
+easily modify underlying network device configurations without the need to memorize NETCONF specific commands.
+Therefore it simplifies network configuration management.
 
-In a nutshell, AMsoil solves problems when implementing test-bed orchestration software. AMsoil provides an architectural framework to build Aggregate Managers. AMs are the workhorses of a test-bed - they manage the allocation and provisioning of resources. AMsoil, not only provides the necessary glue between communication handlers and management logic, it also provides helpers for common tasks in AM development. Hence, removes a lot of duplicated work in AM development. The AMsoil software code is available on github.
+# How to do a quick test for NETCONF AM?
+
+To test the NETCONF AM please first install [netopeer] (https://code.google.com/p/netopeer/) server software on your
+device. Furthermore, initialize the following YANG models (availabe in the "yangs" folder) inside the netopeer server to be able to issue configuration
+mangement commands:
+
+- zanetworker-box.yang
+- of-config1.1.1.yang
+
+The details on how to install a yang model inside your netopeer server is available [here] (https://code.google.com/p/netopeer/)
 
 
-# Documentation
+Finally, once the netopeer server is running log into "test/client/netconfclient.py", edit the test file and run it
+to start configuring your underlying device.
 
-Before you do anything else, please checkout the [Quickstart](https://raw.github.com/motine/AMsoil/development/doc/AMsoil%20Quickstart.pdf)
-Please see the [Wiki](https://github.com/motine/AMsoil/wiki) for more information.
-
-# Logo
-
-![GCF Setup](https://raw.github.com/motine/AMsoil/development/doc/img/logo.jpg)
